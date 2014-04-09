@@ -1,6 +1,8 @@
 package model;
 
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 public class Usuario {
 
@@ -30,7 +32,12 @@ public class Usuario {
 	}
 
 	public int edad() {
-		return 0;
+		 Calendar calendar = new GregorianCalendar();
+		 Calendar calendar2 = new GregorianCalendar();
+		 calendar2.setTime(this.fechaNacimiento);
+		 if(calendar.MONTH >= calendar2.MONTH && calendar.DAY_OF_MONTH >= calendar.DAY_OF_MONTH) 
+			 return (calendar.YEAR - calendar2.YEAR );
+		 return (calendar.YEAR - calendar2.YEAR -1);
 	}
 
 	public Suscripcion getSuscripcion() {

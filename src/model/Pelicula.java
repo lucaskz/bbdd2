@@ -1,13 +1,15 @@
 package model;
 
-public class Pelicula implements Reproducible{
+public class Pelicula  extends Contenido implements Reproducible{
 	
-	public Pelicula(String titulo, int edadMinima, long duracion){}
+	public Pelicula(String titulo, int edadMinima, long duracion){
+		super(titulo, edadMinima);
+	}
 
 	@Override
 	public boolean esPelicula() {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 	@Override
@@ -36,6 +38,11 @@ public class Pelicula implements Reproducible{
 
 	@Override
 	public boolean aptoPara(Usuario usuario) {
+		return false;
+	}
+
+	@Override
+	public boolean esSerie() {
 		// TODO Auto-generated method stub
 		return false;
 	}
