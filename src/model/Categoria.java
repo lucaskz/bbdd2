@@ -31,6 +31,8 @@ public class Categoria {
 		this.fecha = fecha;
 	}
 	
-	public void test(){}
+	public void test(){
+		int b = 3;
+	}
 
 }
