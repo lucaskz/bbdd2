@@ -43,7 +43,7 @@ public class GestorDeContenidos {
 	
 	public Collection<Pelicula>	peliculasVistas() {		
 		Collection<Pelicula> peliculas = new ArrayList<Pelicula>();
-		for (Iterator iterator = this.reproducciones.iterator(); iterator.hasNext();) {			
+		for (Iterator<Reproduccion> iterator = this.reproducciones.iterator(); iterator.hasNext();) {			
 			Reproduccion act = (Reproduccion) iterator.next();
 			if ( act.getReproducible().esPelicula() ){
 				peliculas.add((Pelicula) act.getReproducible());
@@ -63,10 +63,13 @@ public class GestorDeContenidos {
 		return sinver;
 	}
 	
-	public void registrarReproduccion(Reproducible reproducible, Date fecha, long tiempo){
-		this.reproducciones.add(new Reproduccion(reproducible,fecha,tiempo));
+	public void registrarReproduccion(Reproducible reproducible, Date fecha,
+			long tiempo) {
+		if (this.puedeReproducir(reproducible))
+			this.reproducciones.add(new Reproduccion(reproducible, fecha,
+					tiempo));
 	}
-	
+
 	public boolean puedeReproducir(Reproducible reproducible){
 		return (reproducible.aptoPara(this.getUsuario()) && this.getUsuario().getSuscripcion().limiteDeReproducciones() < this.cantidadDeReproducciones() );
 	}
@@ -75,6 +78,17 @@ public class GestorDeContenidos {
 	 
 	private int cantidadDeReproducciones(){
 		return this.reproducciones.size();
+	}
+	
+	public Collection<Pelicula> peliculasAptas(){
+		Collection<Pelicula> aptas = new ArrayList<Pelicula>();
+		
+		for (Iterator<Pelicula> iterator = this.catalogo.getPeliculas().iterator(); iterator.hasNext();) {
+			Pelicula pelicula = (Pelicula) iterator.next();
+			if (pelicula.aptoPara(getUsuario())) 
+				aptas.add(pelicula);
+		}
+		return aptas;
 	}
 
 

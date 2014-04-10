@@ -65,10 +65,8 @@ public class Episodio implements Reproducible {
 
 	
 
-	@Override
 	public boolean aptoPara(Usuario usuario) {
-		// TODO Auto-generated method stub
-		return false;
+		return (this.getEdadMinima()>= usuario.edad());
 	}
 
 }

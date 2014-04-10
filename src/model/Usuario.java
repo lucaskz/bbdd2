@@ -11,6 +11,7 @@ public class Usuario {
 	private Suscripcion suscripcion;
 	private Catalogo catalogo;
 	private GestorDeContenidos gestor;
+	private Sesion sesionActual;
 
 	public Usuario(Date nacimiento, String email, Date fechaSuscripcion,
 			Catalogo catalogo) {
@@ -19,6 +20,8 @@ public class Usuario {
 		this.email=email;
 		this.suscripcion = new Suscripcion(fechaSuscripcion);
 		this.catalogo=catalogo;
+		this.gestor=new GestorDeContenidos(this, catalogo);
+		this.sesionActual= new Sesion ();
 		
 		
 	}

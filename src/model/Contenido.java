@@ -10,8 +10,20 @@ public abstract class Contenido {
 		this.edadMinima=edadMinima;
 	}
 
-	public abstract boolean esPelicula();
+	public  boolean esPelicula(){
+		return false;
+	}
 
-	public abstract boolean esSerie();
+	public  boolean esSerie(){
+		return false;
+	}
+	
+	public String getTitulo(){
+		return this.titulo;
+	}
+	
+	public int getEdadMinima(){
+		return this.edadMinima;
+	}
 
 }

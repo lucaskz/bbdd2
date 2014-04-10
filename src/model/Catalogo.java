@@ -2,6 +2,7 @@ package model;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Iterator;
 
 public class Catalogo {
@@ -9,7 +10,7 @@ public class Catalogo {
 	private Collection <Contenido> contenidos;
 	
 	public Catalogo(){
-		this.contenidos=new ArrayList <Contenido> () ;
+		this.contenidos=new HashSet <Contenido> () ;
 	}
 	
 	public Collection <Contenido> getContenidos () {
@@ -29,7 +30,8 @@ public class Catalogo {
 		
 	}
 	
-	public Collection<Serie> getEpisodios () {
+
+	public Collection<Serie> getSeries () {
 		
 		Collection<Serie> series = new ArrayList<Serie>();
 		for (Iterator<Contenido> iterator = this.contenidos.iterator(); iterator.hasNext();) {			
@@ -43,8 +45,8 @@ public class Catalogo {
 	}
 	
 	public void agregar (Contenido contenido) {
-		
-		this.contenidos.add(contenido);
+		if(!this.contenidos.contains(contenido))
+			this.contenidos.add(contenido);
 	}
 
 }
