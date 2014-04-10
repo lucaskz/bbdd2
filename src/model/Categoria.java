@@ -30,5 +30,7 @@ public class Categoria {
 	public void setFecha(Date fecha) {
 		this.fecha = fecha;
 	}
+	
+	public void test(){}
 
 }
