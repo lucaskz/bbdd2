@@ -16,14 +16,13 @@ public class Usuario {
 	public Usuario(Date nacimiento, String email, Date fechaSuscripcion,
 			Catalogo catalogo) {
 
-		this.fechaNacimiento=nacimiento;
-		this.email=email;
+		this.fechaNacimiento = nacimiento;
+		this.email = email;
 		this.suscripcion = new Suscripcion(fechaSuscripcion);
-		this.catalogo=catalogo;
-		this.gestor=new GestorDeContenidos(this, catalogo);
-		this.sesionActual= new Sesion ();
-		
-		
+		this.catalogo = catalogo;
+		this.gestor = new GestorDeContenidos(this, catalogo);
+		this.sesionActual = new Sesion(null, fechaSuscripcion);
+
 	}
 
 	public Date getFechaNacimiento() {
@@ -35,12 +34,18 @@ public class Usuario {
 	}
 
 	public int edad() {
-		 Calendar calendar = new GregorianCalendar();
-		 Calendar calendar2 = new GregorianCalendar();
-		 calendar2.setTime(this.fechaNacimiento);
-		 if(calendar.MONTH >= calendar2.MONTH && calendar.DAY_OF_MONTH >= calendar.DAY_OF_MONTH) 
-			 return (calendar.YEAR - calendar2.YEAR );
-		 return (calendar.YEAR - calendar2.YEAR -1);
+		Calendar calendar = new GregorianCalendar();
+		Calendar calendar2 = new GregorianCalendar();
+		calendar2.setTime(this.fechaNacimiento);
+
+		if (calendar.get(calendar.MONTH) >= calendar2.get(calendar2.MONTH)
+				&& calendar.get(calendar.DAY_OF_MONTH) >= calendar2
+						.get(calendar2.DAY_OF_MONTH)) {
+
+			return (calendar.get(calendar.YEAR) - calendar2.get(calendar2.YEAR));
+		}
+
+		return (calendar.get(calendar.YEAR) - calendar2.get(calendar2.YEAR) - 1);
 	}
 
 	public Suscripcion getSuscripcion() {
@@ -50,7 +55,6 @@ public class Usuario {
 	public GestorDeContenidos getGestor() {
 		return this.gestor;
 	}
-	
 
 	public String getEmail() {
 		return email;
@@ -59,7 +63,5 @@ public class Usuario {
 	public Catalogo getCatalogo() {
 		return catalogo;
 	}
-
-
 
 }

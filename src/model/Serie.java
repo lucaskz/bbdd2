@@ -1,5 +1,6 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 public class Serie extends Contenido {
@@ -9,6 +10,7 @@ public class Serie extends Contenido {
 	public Serie(String titulo, int edadMinima){
 		
 		super (titulo, edadMinima);
+		this.temporadas=new ArrayList<Temporada>();
 	}
 
 

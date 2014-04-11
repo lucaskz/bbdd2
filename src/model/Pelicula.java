@@ -23,7 +23,7 @@ public class Pelicula  extends Contenido implements Reproducible{
 	}
 
 	public boolean aptoPara(Usuario usuario) {
-		return (this.getEdadMinima()>= usuario.edad());
+		return (this.getEdadMinima()<= usuario.edad());
 	}
 
 
