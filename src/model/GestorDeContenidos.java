@@ -71,7 +71,7 @@ public class GestorDeContenidos {
 	}
 
 	public boolean puedeReproducir(Reproducible reproducible){
-		return (reproducible.aptoPara(this.getUsuario()) && this.getUsuario().getSuscripcion().limiteDeReproducciones() < this.cantidadDeReproducciones() );
+		return (reproducible.aptoPara(this.getUsuario()) && this.getUsuario().getSuscripcion().limiteDeReproducciones() > this.cantidadDeReproducciones() );
 	}
 
 	
