@@ -8,6 +8,10 @@ public class Reproduccion {
 	private long tiempo;
 	private Reproducible reproducible;
 	
+	public Reproduccion () {
+		
+	}
+	
 	public Reproduccion(Reproducible reproducible, Date fecha, long tiempo){
 		this.fecha=fecha;
 		this.tiempo=tiempo;

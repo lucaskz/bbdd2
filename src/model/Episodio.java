@@ -7,6 +7,10 @@ public class Episodio implements Reproducible {
 	private String titulo;
 	private Temporada temporada;
 
+	public Episodio() {
+		
+	}
+
 	public Episodio(long duracion, int numero, String titulo,
 			Temporada temporada) {
 
@@ -62,10 +66,8 @@ public class Episodio implements Reproducible {
 		return true;
 	}
 
-	
-
 	public boolean aptoPara(Usuario usuario) {
-	
+
 		return (this.getEdadMinima() <= usuario.edad());
 	}
 

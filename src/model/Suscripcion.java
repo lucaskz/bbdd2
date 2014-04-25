@@ -8,6 +8,11 @@ public class Suscripcion {
 	private Categoria categoria;
 
 	
+	public Suscripcion () {
+		
+	}
+	
+	
 	public Suscripcion(Date fechaSuscripcion){
 		
 		this.fechaSuscripcion=fechaSuscripcion;

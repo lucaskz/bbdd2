@@ -11,6 +11,10 @@ public class GestorDeContenidos {
 	private Catalogo catalogo;
 	private Collection<Reproduccion> reproducciones;
 	
+	public GestorDeContenidos(){
+		
+	}
+	
 	public GestorDeContenidos(Usuario usuario, Catalogo catalogo){
 		this.usuario=usuario;
 		this.catalogo=catalogo;

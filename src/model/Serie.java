@@ -7,6 +7,10 @@ public class Serie extends Contenido {
 	
 	private Collection<Temporada> temporadas;
 	
+	public Serie () {
+		
+	}
+	
 	public Serie(String titulo, int edadMinima){
 		
 		super (titulo, edadMinima);

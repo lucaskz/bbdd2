@@ -5,6 +5,10 @@ public abstract class Contenido {
 	private String titulo;
 	private int edadMinima;
 	
+	public Contenido () {
+		
+	}
+	
 	public	Contenido(String titulo,int	edadMinima){
 		this.titulo=titulo;
 		this.edadMinima=edadMinima;

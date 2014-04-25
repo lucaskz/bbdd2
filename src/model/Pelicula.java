@@ -4,6 +4,10 @@ public class Pelicula  extends Contenido implements Reproducible{
 	
 	private long duracion;
 	
+	public Pelicula () {
+		
+	}
+	
 	public Pelicula(String titulo, int edadMinima, long duracion){
 		super(titulo, edadMinima);
 		this.duracion=duracion;

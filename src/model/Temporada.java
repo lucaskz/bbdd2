@@ -9,6 +9,10 @@ public class Temporada {
 	private int numero;
 	private Serie serie;
 	
+	public Temporada () {
+		
+	}
+	
 	public Temporada(Serie serie, int numero){
 		this.numero=numero;
 		this.episodios= new ArrayList<Episodio>();

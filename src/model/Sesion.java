@@ -6,6 +6,10 @@ public class Sesion {
 
 	private Date fecha;
 	private Reproduccion reproduccion;
+	
+	public Sesion () {
+		
+	}
 
 	public Sesion(Reproduccion reproduccion, Date fecha) {
 

@@ -12,6 +12,10 @@ public class Usuario {
 	private Catalogo catalogo;
 	private GestorDeContenidos gestor;
 	private Sesion sesionActual;
+	
+	public Usuario () {
+		
+	}
 
 	public Usuario(Date nacimiento, String email, Date fechaSuscripcion,
 			Catalogo catalogo) {
@@ -21,7 +25,7 @@ public class Usuario {
 		this.suscripcion = new Suscripcion(fechaSuscripcion);
 		this.catalogo = catalogo;
 		this.gestor = new GestorDeContenidos(this, catalogo);
-		this.sesionActual = new Sesion(null, fechaSuscripcion);
+		this.setSesion(new Sesion(null, fechaSuscripcion));
 
 	}
 
@@ -62,6 +66,14 @@ public class Usuario {
 
 	public Catalogo getCatalogo() {
 		return catalogo;
+	}
+
+	public Sesion getSesion() {
+		return sesionActual;
+	}
+
+	public void setSesion(Sesion sesion) {
+		this.sesionActual = sesion;
 	}
 
 }
