@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class Categoria {
 	
+	private Long oId;
 	private Date fecha;
 	
 	protected int limiteReproducciones;
@@ -29,6 +30,14 @@ public class Categoria {
 
 	public void setFecha(Date fecha) {
 		this.fecha = fecha;
+	}
+
+	public Long getoId() {
+		return oId;
+	}
+
+	public void setoId(Long oId) {
+		this.oId = oId;
 	}
 	
 	

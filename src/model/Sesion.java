@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class Sesion {
 
+	private Long oId;
 	private Date fecha;
 	private Reproduccion reproduccion;
 	
@@ -23,6 +24,14 @@ public class Sesion {
 
 	public Reproduccion getReproduccion() {
 		return reproduccion;
+	}
+
+	public Long getoId() {
+		return oId;
+	}
+
+	public void setoId(Long oId) {
+		this.oId = oId;
 	}
 
 }

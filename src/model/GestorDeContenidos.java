@@ -7,6 +7,7 @@ import java.util.Iterator;
 
 public class GestorDeContenidos {
 	
+	private Long oId;
 	private Usuario usuario;
 	private Catalogo catalogo;
 	private Collection<Reproduccion> reproducciones;
@@ -93,6 +94,14 @@ public class GestorDeContenidos {
 				aptas.add(pelicula);
 		}
 		return aptas;
+	}
+
+	public Long getoId() {
+		return oId;
+	}
+
+	public void setoId(Long oId) {
+		this.oId = oId;
 	}
 
 

@@ -7,6 +7,7 @@ import java.util.Iterator;
 
 public class Catalogo {
 	
+	private Long oId;
 	private Collection <Contenido> contenidos;
 	
 	public Catalogo(){
@@ -48,5 +49,15 @@ public class Catalogo {
 		if(!this.contenidos.contains(contenido))
 			this.contenidos.add(contenido);
 	}
+
+	public Long getoId() {
+		return oId;
+	}
+
+	public void setoId(Long oId) {
+		this.oId = oId;
+	}
+
+
 
 }

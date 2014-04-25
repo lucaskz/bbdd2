@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class Suscripcion {
 	
+	private Long oId;
 	private Date fechaSuscripcion;
 	private Categoria categoria;
 
@@ -39,6 +40,16 @@ public class Suscripcion {
 	
 	public int limiteDeReproducciones(){
 		return this.categoria.limiteDeReproducciones();
+	}
+
+
+	public Long getoId() {
+		return oId;
+	}
+
+
+	public void setoId(Long oId) {
+		this.oId = oId;
 	}	
 
 }

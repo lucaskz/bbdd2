@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class Reproduccion {
 	
+	private Long oId;
 	private Date fecha;
 	private long tiempo;
 	private Reproducible reproducible;
@@ -28,6 +29,14 @@ public class Reproduccion {
 
 	public long getTiempo() {
 		return tiempo;
+	}
+
+	public Long getoId() {
+		return oId;
+	}
+
+	public void setoId(Long oId) {
+		this.oId = oId;
 	}
 
 

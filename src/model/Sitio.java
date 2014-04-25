@@ -5,6 +5,7 @@ import java.util.Collection;
 
 public class Sitio {
 
+	private Long oId;
 	private Collection<Usuario> usuarios;
 	private Catalogo catalogo;
 
@@ -27,6 +28,14 @@ public class Sitio {
 
 		this.usuarios.add(usuario);
 
+	}
+
+	public Long getoId() {
+		return oId;
+	}
+
+	public void setoId(Long oId) {
+		this.oId = oId;
 	}
 
 }

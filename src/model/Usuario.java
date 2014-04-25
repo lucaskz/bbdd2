@@ -6,6 +6,7 @@ import java.util.GregorianCalendar;
 
 public class Usuario {
 
+	private Long oId;
 	private Date fechaNacimiento;
 	private String email;
 	private Suscripcion suscripcion;
@@ -74,6 +75,14 @@ public class Usuario {
 
 	public void setSesion(Sesion sesion) {
 		this.sesionActual = sesion;
+	}
+
+	public Long getoId() {
+		return oId;
+	}
+
+	public void setoId(Long oId) {
+		this.oId = oId;
 	}
 
 }

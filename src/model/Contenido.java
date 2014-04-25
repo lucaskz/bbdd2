@@ -2,6 +2,7 @@ package model;
 
 public abstract class Contenido {
 	
+	private Long oId;
 	private String titulo;
 	private int edadMinima;
 	
@@ -28,6 +29,14 @@ public abstract class Contenido {
 	
 	public int getEdadMinima(){
 		return this.edadMinima;
+	}
+
+	public Long getoId() {
+		return oId;
+	}
+
+	public void setoId(Long oId) {
+		this.oId = oId;
 	}
 
 }

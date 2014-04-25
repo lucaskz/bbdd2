@@ -5,6 +5,7 @@ import java.util.Collection;
 
 public class Temporada {
 	
+	private Long oId;
 	private Collection<Episodio> episodios;
 	private int numero;
 	private Serie serie;
@@ -38,6 +39,14 @@ public class Temporada {
 	
 	public Serie getSerie(){
 		return (this.serie);
+	}
+
+	public Long getoId() {
+		return oId;
+	}
+
+	public void setoId(Long oId) {
+		this.oId = oId;
 	}
 	
 
