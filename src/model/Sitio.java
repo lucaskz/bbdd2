@@ -24,7 +24,7 @@ public class Sitio {
 		return catalogo;
 	}
 
-	public void registarUsuario(Usuario usuario) {
+	public void registrarUsuario(Usuario usuario) {
 
 		this.usuarios.add(usuario);
 
