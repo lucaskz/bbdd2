@@ -2,6 +2,7 @@ package model;
 
 public class Pelicula  extends Contenido implements Reproducible{
 	
+	private Long oId;
 	private long duracion;
 	
 	public Pelicula () {
@@ -30,5 +31,12 @@ public class Pelicula  extends Contenido implements Reproducible{
 		return (this.getEdadMinima()<= usuario.edad());
 	}
 
+	public Long getoId() {
+		return oId;
+	}
+
+	public void setoId(Long oId) {
+		this.oId = oId;
+	}
 
 }

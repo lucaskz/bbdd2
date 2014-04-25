@@ -5,6 +5,7 @@ import java.util.Collection;
 
 public class Serie extends Contenido {
 	
+	private Long oId;
 	private Collection<Temporada> temporadas;
 	
 	public Serie () {
@@ -29,5 +30,14 @@ public class Serie extends Contenido {
 	public Collection<Temporada> getTemporadas(){
 		return this.temporadas;
 	}
+	
+	public Long getoId() {
+		return oId;
+	}
+
+	public void setoId(Long oId) {
+		this.oId = oId;
+	}
+
 
 }
