@@ -9,15 +9,17 @@
 			<key column="ID_SITIO" />
 			<one-to-many class="Usuario" />
 		</set>
-		<many-to-one name="catalogo" column="ID_CATALOGO" unique="true"	not-null="true" cascade="all" />
+		<many-to-one name="catalogo" column="ID_CATALOGO" unique="true"
+			not-null="true" cascade="all" />
 	</class>
 
 	<class name="Catalogo" TABLE="CATALOGO">
 		<id name="oId" column="ID_CATALOGO">
 			<generator class="native" />
 		</id>
-		<set name="contenidos"inverse="true" cascade="all">
-		<key column="ID_CATALOGO"/><one-to-many class="Contenido"/>
+		<set name="contenidos" inverse="true" cascade="all">
+			<key column="ID_CATALOGO" />
+			<one-to-many class="Contenido" />
 		</set>
 	</class>
 
@@ -25,48 +27,80 @@
 		<id name="oId" column="ID_SESION">
 			<generator class="native" />
 		</id>
-		<property name="fecha" type="date"/>
-		<many-to-one name="reproduccion"column="ID_REPRODUCCION" unique="true"not-null="true"cascade="all" />
+		<property name="fecha" type="date" />
+		<many-to-one name="reproduccion" column="ID_REPRODUCCION"
+			unique="true" not-null="true" cascade="all" />
 	</Class>
-	
+
 	<Class name="Usuario" TABLE="USUARIO">
 		<id name="oId" column="ID_USUARIO">
-		     <generator class="native"/>
+			<generator class="native" />
 		</id>
 		<property name="email" type="string" />
 		<property name="fechaNacimiento" type="date" />
-		<many-to-one name="gestor"column="ID_GESTOR" unique="true"not-null="true"cascade="all" />
-		<many-to-one name="suscripcion"column="ID_SUSCRIPCION" unique="true"not-null="true"cascade="all" />
+		<many-to-one name="gestor" column="ID_GESTOR" unique="true"
+			not-null="true" cascade="all" />
+		<many-to-one name="suscripcion" column="ID_SUSCRIPCION"
+			unique="true" not-null="true" cascade="all" />
 	</Class>
-	
+
 	<Class name="Suscripcion" TABLE="SUSCRIPCION">
 		<id name="oId" column="ID_SUSCRIPCION">
 			<generator class="native" />
 		</id>
-		<many-to-one name="categoria" column="ID_CATEGORIA" unique="true"not-null="true"cascade="all" />
-		<property name="fechaSuscripcion" type="date"/>		
+		<many-to-one name="categoria" column="ID_CATEGORIA"
+			unique="true" not-null="true" cascade="all" />
+		<property name="fechaSuscripcion" type="date" />
 	</Class>
-	
+
 	<Class name="GestorDeContenidos" TABLE="GESTOR">
 		<id name="oId" column="ID_GESTOR">
 			<generator class="native" />
 		</id>
-		<many-to-one name="catalogo" column="ID_CATALOGO" unique="true"not-null="true"cascade="all" />
-		<many-to-one name="usuario" column="ID_USUARIO" unique="true"not-null="true"cascade="all" />
-		<set name="reproducciones" cascade="all"> 
-			<key column="ID_GESTOR" not-null="true"/>
-			<one-to-many class="Reproduccion"/>
+		<many-to-one name="catalogo" column="ID_CATALOGO" unique="true"
+			not-null="true" cascade="all" />
+		<many-to-one name="usuario" column="ID_USUARIO" unique="true"
+			not-null="true" cascade="all" />
+		<set name="reproducciones" cascade="all">
+			<key column="ID_GESTOR" not-null="true" />
+			<one-to-many class="Reproduccion" />
 		</set>
 	</Class>
-	
+
 	<Class name="Reproduccion" TABLE="REPRODUCCION">
 		<id name="oId" column="ID_REPRODUCCION">
 			<generator class="native" />
 		</id>
 		<property name="fecha" type="date" />
 		<property name="tiempo" tpye="long" />
-		<many-to-one name="reproducible" column="ID_REPRODUCIBLE" unique="true"not-null="true"cascade="all" />
+		<many-to-one name="reproducible" column="ID_REPRODUCIBLE"
+			unique="true" not-null="true" cascade="all" />
 	</Class>
+
+
+	<Class name="Contenido" TABLE="CONTENIDO">
+		<id name="oId" column="ID_CONTENIDO">
+			<generator class="native" />
+		</id>
+		<discriminator column="TIPO_CONTENIDO" type="string" />
+		<property name="titulo" type="string" column="TITULO" />
+		<property name="edadMinima" type="integer" column="EDAD_MINIMA" />
+		<subclass name="Pelicula" discriminator-value="pelicula">
+			<property name="duracion" type="long" column="DURACION" />
+
+		</subclass>
+		<subclass name="Serie" discriminator-value="serie">
+
+			<set name="temporadas" cascade="all">
+				<key column="ID_CONTENIDO" not-null="true" />
+				<one-to-many class="Temporada" />
+			</set>
+		</subclass>
+
+
+	</Class>
+
+
 
 </hibernate-mapping>
 
