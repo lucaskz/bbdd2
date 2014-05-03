@@ -3,8 +3,8 @@ package model;
 public abstract class Contenido {
 	
 	private Long oId;
-	private String titulo;
-	private int edadMinima;
+	protected String titulo;
+	protected int edadMinima;
 	
 	public Contenido () {
 		

@@ -77,7 +77,7 @@
 			unique="true" not-null="true" cascade="all" />
 	</Class>
 
-	<class name="Categoria" table="CATEGORIA">
+	<Class name="Categoria" table="CATEGORIA">
 		<id name="oId" column="ID_CATEGORIA">
 			<generator class="native" />
 		</id>
@@ -88,19 +88,19 @@
 		<joined-subclass name="CategoriaVip" table="CATEGORIA_VIP">
 			<key column="ID_CATEGORIA" />
 		</joined-subclass>
-	</class>
+	</Class>
 
-	<class name=Reproducible table="REPRODUCIBLE" />
-	<id name="oId" column="ID_REPRODUCIBLE">
-		<generator class="native" />
-	</id>
-	<discriminator colum="TYPE_REPRODUCIBLE" type="string" />
-	<subclass name="Episodio" discriminator-value="EPISODIO">
-		<property name="duracion" column="CCTYPE" />
-		<property name="numero" column="CCTYPE" />
-		<property name="titulo" column="CCTYPE" />
-	</subclass>
-</class>
+	<Class name=Reproducible table="REPRODUCIBLE">
+		<id name="oId" column="ID_REPRODUCIBLE">
+			<generator class="native" />
+		</id>
+		<discriminator colum="TYPE_REPRODUCIBLE" type="string" />
+		<subclass name="Episodio" discriminator-value="EPISODIO">
+			<property name="duracion" column="CCTYPE" />
+			<property name="numero" column="CCTYPE" />
+			<property name="titulo" column="CCTYPE" />
+		</subclass>
+	</Class>
 
 	<Class name="Contenido" TABLE="CONTENIDO">
 		<id name="oId" column="ID_CONTENIDO">
@@ -120,6 +120,17 @@
 				<one-to-many class="Temporada" />
 			</set>
 		</subclass>
+	</Class>
+
+	<Class>
+		<id name="oId" column="ID_TEMPORADA">
+			<generator class="native" />
+		</id>
+		<property name="numero" type="integer" />
+		<set name="episodios" cascade="all">
+			<key column="ID_TEMPORADA" not-null="true" />
+			<one-to-many class="Episodio" />
+		</set>
 	</Class>
 
 </hibernate-mapping>

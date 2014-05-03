@@ -5,7 +5,7 @@ import java.util.Date;
 public class Categoria {
 	
 	private Long oId;
-	private Date fecha;
+	protected Date fecha;
 	
 	protected int limiteReproducciones;
 	
