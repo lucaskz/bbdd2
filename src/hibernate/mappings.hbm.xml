@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<hibernate-mapping package="model">
+
+	<class name="Sitio" TABLE="SITIO">
+		<id name="oId" column="ID_SITIO">
+			<generator class="native" />
+		</id>
+		<set name="usuarios" inverse="true" cascade="all">
+			<key column="ID_SITIO" />
+			<one-to-many class="Usuario" />
+		</set>
+		<many-to-one name="catalogo" column="ID_CATALOGO" unique="true"
+			not-null="true" cascade="all" />
+	</class>
+
+	<class name="Catalogo" TABLE="CATALOGO">
+		<id name="oId" column="ID_CATALOGO">
+			<generator class="native" />
+		</id>
+		<set name="contenidos" inverse="true" cascade="all">
+			<key column="ID_CATALOGO" />
+			<one-to-many class="Contenido" />
+		</set>
+	</class>
+
+	<Class name="Sesion" TABLE="SESION">
+		<id name="oId" column="ID_SESION">
+			<generator class="native" />
+		</id>
+		<property name="fecha" type="date" />
+		<many-to-one name="reproduccion" column="ID_REPRODUCCION"
+			unique="true" not-null="true" cascade="all" />
+	</Class>
+
+	<Class name="Usuario" TABLE="USUARIO">
+		<id name="oId" column="ID_USUARIO">
+			<generator class="native" />
+		</id>
+		<property name="email" type="string" />
+		<property name="fechaNacimiento" type="date" />
+		<many-to-one name="gestor" column="ID_GESTOR" unique="true"
+			not-null="true" cascade="all" />
+		<many-to-one name="suscripcion" column="ID_SUSCRIPCION"
+			unique="true" not-null="true" cascade="all" />
+	</Class>
+
+	<Class name="Suscripcion" TABLE="SUSCRIPCION">
+		<id name="oId" column="ID_SUSCRIPCION">
+			<generator class="native" />
+		</id>
+		<many-to-one name="categoria" column="ID_CATEGORIA"
+			unique="true" not-null="true" cascade="all" />
+		<property name="fechaSuscripcion" type="date" />
+	</Class>
+
+	<Class name="GestorDeContenidos" TABLE="GESTOR">
+		<id name="oId" column="ID_GESTOR">
+			<generator class="native" />
+		</id>
+		<many-to-one name="catalogo" column="ID_CATALOGO" unique="true"
+			not-null="true" cascade="all" />
+		<many-to-one name="usuario" column="ID_USUARIO" unique="true"
+			not-null="true" cascade="all" />
+		<set name="reproducciones" cascade="all">
+			<key column="ID_GESTOR" not-null="true" />
+			<one-to-many class="Reproduccion" />
+		</set>
+	</Class>
+
+	<Class name="Reproduccion" TABLE="REPRODUCCION">
+		<id name="oId" column="ID_REPRODUCCION">
+			<generator class="native" />
+		</id>
+		<property name="fecha" type="date" />
+		<property name="tiempo" tpye="long" />
+		<many-to-one name="reproducible" column="ID_REPRODUCIBLE"
+			unique="true" not-null="true" cascade="all" />
+	</Class>
+
+	<class name="Vehiculo" table="CATEGORIA">
+		<id name="oId" column="ID_CATEGORIA">
+			<generator class="native" />
+		</id>
+		<property name="fecha" column="date" />
+		<joined-subclass name="CategoriaInvitado" table="CATEGORIA_INVITADO">
+			<key column="ID_CATEGORIA" />
+		</joined-subclass>
+		<joined-subclass name="CategoriaVip" table="CATEGORIA_VIP">
+			<key column="ID_CATEGORIA" />
+		</joined-subclass>
+	</class>
+
+	<class name=Reproducible table="REPRODUCIBLE" />
+	<id name="oId" column="ID_REPRODUCIBLE">
+		<generator class="native" />
+	</id>
+	<discriminator colum="TYPE_REPRODUCIBLE" type="string" />
+	<subclass name="Episodio" discriminator-value="EPISODIO">
+		<property name="duracion" column="CCTYPE" />
+		<property name="numero" column="CCTYPE" />
+		<property name="titulo" column="CCTYPE" />
+	</subclass>
+</class>
+
+	<Class name="Contenido" TABLE="CONTENIDO">
+		<id name="oId" column="ID_CONTENIDO">
+			<generator class="native" />
+		</id>
+		<discriminator column="TIPO_CONTENIDO" type="string" />
+		<property name="titulo" type="string" column="TITULO" />
+		<property name="edadMinima" type="integer" column="EDAD_MINIMA" />
+		<subclass name="Pelicula" discriminator-value="pelicula">
+			<property name="duracion" type="long" column="DURACION" />
+
+		</subclass>
+		<subclass name="Serie" discriminator-value="serie">
+
+			<set name="temporadas" cascade="all">
+				<key column="ID_CONTENIDO" not-null="true" />
+				<one-to-many class="Temporada" />
+			</set>
+		</subclass>
+	</Class>
+
+</hibernate-mapping>
