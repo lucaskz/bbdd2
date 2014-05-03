@@ -67,6 +67,31 @@
 		<property name="tiempo" tpye="long" />
 		<many-to-one name="reproducible" column="ID_REPRODUCIBLE" unique="true"not-null="true"cascade="all" />
 	</Class>
+	
+	<class name="Vehiculo" table="CATEGORIA">
+		<id name="oId" column="ID_CATEGORIA">
+			<generator class="native" />
+		</id>
+		<property name="fecha" column="date" />
+		<joined-subclass name="CategoriaInvitado" table="CATEGORIA_INVITADO">
+			<key column="ID_CATEGORIA" />
+		</joined-subclass>
+		<joined-subclass name="CategoriaVip" table="CATEGORIA_VIP">
+			<key column="ID_CATEGORIA" />
+		</joined-subclass>
+    </class>
+    
+    <class name=Reproducible table="REPRODUCIBLE"/> 
+    	<id name="oId" column="ID_REPRODUCIBLE">
+    		<generator class="native"/>
+    	</id>
+    	<discriminator colum="TYPE_REPRODUCIBLE" type="string"/>
+    	<subclass name="Episodio" discriminator-value="EPISODIO">
+     	   <property name="duracion" column="CCTYPE"/>
+     	   <property name="numero" column="CCTYPE"/>
+     	   <property name="titulo" column="CCTYPE"/>
+        </subclass>
+    </class>
 
 </hibernate-mapping>
 
