@@ -78,29 +78,5 @@
 	</Class>
 
 
-	<Class name="Contenido" TABLE="CONTENIDO">
-		<id name="oId" column="ID_CONTENIDO">
-			<generator class="native" />
-		</id>
-		<discriminator column="TIPO_CONTENIDO" type="string" />
-		<property name="titulo" type="string" column="TITULO" />
-		<property name="edadMinima" type="integer" column="EDAD_MINIMA" />
-		<subclass name="Pelicula" discriminator-value="pelicula">
-			<property name="duracion" type="long" column="DURACION" />
-
-		</subclass>
-		<subclass name="Serie" discriminator-value="serie">
-
-			<set name="temporadas" cascade="all">
-				<key column="ID_CONTENIDO" not-null="true" />
-				<one-to-many class="Temporada" />
-			</set>
-		</subclass>
-
-
-	</Class>
-
-
-
 </hibernate-mapping>
 
