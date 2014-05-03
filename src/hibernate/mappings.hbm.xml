@@ -72,16 +72,16 @@
 			<generator class="native" />
 		</id>
 		<property name="fecha" type="date" />
-		<property name="tiempo" tpye="long" />
+		<property name="tiempo" type="long" />
 		<many-to-one name="reproducible" column="ID_REPRODUCIBLE"
 			unique="true" not-null="true" cascade="all" />
 	</Class>
 
-	<class name="Vehiculo" table="CATEGORIA">
+	<class name="Categoria" table="CATEGORIA">
 		<id name="oId" column="ID_CATEGORIA">
 			<generator class="native" />
 		</id>
-		<property name="fecha" column="date" />
+		<property name="fecha" type="date" />
 		<joined-subclass name="CategoriaInvitado" table="CATEGORIA_INVITADO">
 			<key column="ID_CATEGORIA" />
 		</joined-subclass>
