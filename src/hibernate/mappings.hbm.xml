@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping package="model">
 
 	<class name="Sitio" TABLE="SITIO">
 		<id name="oId" column="ID_SITIO">
 			<generator class="native" />
 		</id>
-		<set name="usuarios" inverse="true" cascade="all">
+		<list name="usuarios" inverse="true" cascade="all">
 			<key column="ID_SITIO" />
 			<one-to-many class="Usuario" />
-		</set>
+		</list>
 		<many-to-one name="catalogo" column="ID_CATALOGO" unique="true"
 			not-null="true" cascade="all" />
 	</class>
@@ -61,10 +64,10 @@
 			not-null="true" cascade="all" />
 		<many-to-one name="usuario" column="ID_USUARIO" unique="true"
 			not-null="true" cascade="all" />
-		<set name="reproducciones" cascade="all">
+		<list name="reproducciones" cascade="all">
 			<key column="ID_GESTOR" not-null="true" />
 			<one-to-many class="Reproduccion" />
-		</set>
+		</list>
 	</Class>
 
 	<Class name="Reproduccion" TABLE="REPRODUCCION">
@@ -90,17 +93,27 @@
 		</joined-subclass>
 	</Class>
 
-	<Class name=Reproducible table="REPRODUCIBLE">
-		<id name="oId" column="ID_REPRODUCIBLE">
+
+	<any name="Reproducible" meta-type="string" id-type="long">
+		<meta-value value="EPI" class="Episodio" />
+		<meta-value value="PELI" class="Pelicula" />
+		<column name="REPRODUCIBLE_CLASS" />
+		<column name="REPRODUCIBLE_ID" />
+	</any>
+	
+	<class name="Episodio" TABLE="EPISODIO" >
+		<id name="oId" column="ID_EPISODIO">
 			<generator class="native" />
 		</id>
-		<discriminator colum="TYPE_REPRODUCIBLE" type="string" />
-		<subclass name="Episodio" discriminator-value="EPISODIO">
-			<property name="duracion" column="CCTYPE" />
-			<property name="numero" column="CCTYPE" />
-			<property name="titulo" column="CCTYPE" />
-		</subclass>
-	</Class>
+		<property name="duracion" type="long" />
+		<property name="numero" type="integer" />
+		<property name="titulo" type="string" />
+		<many-to-one name="temporada"
+			column="ID_TEMPORADA"
+			not-null="true"
+			cascade="all" />
+		
+	</class>
 
 	<Class name="Contenido" TABLE="CONTENIDO">
 		<id name="oId" column="ID_CONTENIDO">
@@ -115,22 +128,22 @@
 		</subclass>
 		<subclass name="Serie" discriminator-value="serie">
 
-			<set name="temporadas" cascade="all">
+			<list name="temporadas" cascade="all">
 				<key column="ID_CONTENIDO" not-null="true" />
 				<one-to-many class="Temporada" />
-			</set>
+			</list>
 		</subclass>
 	</Class>
 
-	<Class>
+	<Class name="Temporada" TABLE="TEMPORADA">
 		<id name="oId" column="ID_TEMPORADA">
 			<generator class="native" />
 		</id>
 		<property name="numero" type="integer" />
-		<set name="episodios" cascade="all">
+		<list name="episodios" inverse="true" cascade="all">
 			<key column="ID_TEMPORADA" not-null="true" />
 			<one-to-many class="Episodio" />
-		</set>
+		</list>
 	</Class>
 
 </hibernate-mapping>
