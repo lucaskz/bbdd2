@@ -40,10 +40,10 @@
 			<generator class="native" />
 		</id>
 		<property name="email" type="string" />
-		<property name="fechaNacimiento" type="date" />
-		<one-to-one name="gestor" property-ref="usuario" />
+		<property name="fechaNacimiento" type="date" />	
 		<many-to-one name="suscripcion" column="ID_SUSCRIPCION"
 			unique="true" not-null="true" cascade="all" />
+					<one-to-one name="gestor" property-ref="usuario" />
 	</class>
 
 	<class name="Suscripcion" table="SUSCRIPCION">
@@ -62,7 +62,8 @@
 		<many-to-one name="catalogo" column="ID_CATALOGO" unique="true"
 			not-null="true" cascade="all" />
 		<many-to-one name="usuario" column="ID_USUARIO" unique="true"
-			not-null="true" cascade="all" />
+			not-null="true" cascade="all" />		
+
 		<list name="reproducciones" cascade="all">
 			<key column="ID_GESTOR"  />
 			<list-index column="sortOrder" />
