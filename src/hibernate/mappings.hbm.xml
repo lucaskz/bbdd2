@@ -65,7 +65,7 @@
 		<many-to-one name="usuario" column="ID_USUARIO" unique="true"
 			not-null="true" cascade="all" />
 		<list name="reproducciones" cascade="all">
-			<key column="ID_GESTOR" not-null="true" />
+			<key column="ID_GESTOR"  />
 			<list-index column="sortOrder" />
 			<one-to-many class="Reproduccion" />
 		</list>
