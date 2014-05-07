@@ -95,7 +95,7 @@
 		<joined-subclass name="CategoriaInvitado" table="CATEGORIA_INVITADO">
 			<key column="ID_CATEGORIA" />
 		</joined-subclass>
-		<joined-subclass name="CategoriaVip" table="CATEGORIA_VIP">
+		<joined-subclass name="CategoriaVIP" table="CATEGORIA_VIP">
 			<key column="ID_CATEGORIA" />
 		</joined-subclass>
 	</class>
