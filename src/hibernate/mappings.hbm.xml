@@ -75,7 +75,7 @@
 		<id name="oId" type="integer" column="id">
 			<generator class="native" />
 		</id>
-		<any name="reproducible" meta-type="string" id-type="integer">
+		<any name="" meta-type="string" id-type="integer">
 			<meta-value value="Epi" class="Episodio" />
 			<meta-value value="Peli" class="Pelicula" />
 			<column name="REPRODUCIBLE_CLASS" />
