@@ -34,4 +34,12 @@ public class Sesion {
 		this.oId = oId;
 	}
 
+	public void setFecha(Date fecha) {
+		this.fecha = fecha;
+	}
+
+	public void setReproduccion(Reproduccion reproduccion) {
+		this.reproduccion = reproduccion;
+	}
+
 }

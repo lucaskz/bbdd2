@@ -38,4 +38,12 @@ public class Sitio {
 		this.oId = oId;
 	}
 
+	public void setUsuarios(Collection<Usuario> usuarios) {
+		this.usuarios = usuarios;
+	}
+
+	public void setCatalogo(Catalogo catalogo) {
+		this.catalogo = catalogo;
+	}
+
 }

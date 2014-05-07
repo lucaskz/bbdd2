@@ -72,7 +72,7 @@
 	</class>
 
 	<class name="Reproducible" table="REPRODUCIBLE" polymorphism="implicit">
-		<id name="id" type="integer" column="id">
+		<id name="oId" type="integer" column="id">
 			<generator class="native" />
 		</id>
 		<any name="reproducible" meta-type="string" id-type="integer">

@@ -39,6 +39,14 @@ public class Categoria {
 	public void setoId(Long oId) {
 		this.oId = oId;
 	}
+
+	public int getLimiteReproducciones() {
+		return limiteReproducciones;
+	}
+
+	public void setLimiteReproducciones(int limiteReproducciones) {
+		this.limiteReproducciones = limiteReproducciones;
+	}
 	
 	
 

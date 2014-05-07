@@ -8,6 +8,8 @@ public class Serie extends Contenido {
 	private Long oId;
 	private Collection<Temporada> temporadas;
 	
+	
+
 	public Serie () {
 		
 	}
@@ -29,6 +31,10 @@ public class Serie extends Contenido {
 	
 	public Collection<Temporada> getTemporadas(){
 		return this.temporadas;
+	}
+	
+	public void setTemporadas(Collection<Temporada> temporadas) {
+		this.temporadas = temporadas;
 	}
 	
 	public Long getoId() {

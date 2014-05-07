@@ -48,6 +48,18 @@ public class Temporada {
 	public void setoId(Long oId) {
 		this.oId = oId;
 	}
+
+	public void setEpisodios(Collection<Episodio> episodios) {
+		this.episodios = episodios;
+	}
+
+	public void setNumero(int numero) {
+		this.numero = numero;
+	}
+
+	public void setSerie(Serie serie) {
+		this.serie = serie;
+	}
 	
 
 }

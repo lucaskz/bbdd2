@@ -50,12 +50,24 @@ public class Episodio implements Reproducible {
 		return this.temporada.getEdadMinima();
 	}
 
-	public void setEdadMinima(int edadMinima) {
-	}
+	
 
 	public Temporada getTemporada() {
 		return temporada;
 	}
+	
+	public Long getoId() {
+		return oId;
+	}
+
+	public void setoId(Long oId) {
+		this.oId = oId;
+	}
+
+	public void setTemporada(Temporada temporada) {
+		this.temporada = temporada;
+	}
+
 
 	public boolean esPelicula() {
 
@@ -72,12 +84,5 @@ public class Episodio implements Reproducible {
 		return (this.getEdadMinima() <= usuario.edad());
 	}
 
-	public Long getoId() {
-		return oId;
-	}
-
-	public void setoId(Long oId) {
-		this.oId = oId;
-	}
 
 }

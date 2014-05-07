@@ -58,6 +58,10 @@ public class Catalogo {
 		this.oId = oId;
 	}
 
+	public void setContenidos(Collection<Contenido> contenidos) {
+		this.contenidos = contenidos;
+	}
+
 
 
 }

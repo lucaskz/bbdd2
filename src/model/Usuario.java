@@ -85,4 +85,28 @@ public class Usuario {
 		this.oId = oId;
 	}
 
+	public Sesion getSesionActual() {
+		return sesionActual;
+	}
+
+	public void setSesionActual(Sesion sesionActual) {
+		this.sesionActual = sesionActual;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public void setSuscripcion(Suscripcion suscripcion) {
+		this.suscripcion = suscripcion;
+	}
+
+	public void setCatalogo(Catalogo catalogo) {
+		this.catalogo = catalogo;
+	}
+
+	public void setGestor(GestorDeContenidos gestor) {
+		this.gestor = gestor;
+	}
+
 }

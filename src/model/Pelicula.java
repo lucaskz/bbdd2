@@ -39,4 +39,8 @@ public class Pelicula  extends Contenido implements Reproducible{
 		this.oId = oId;
 	}
 
+	public void setDuracion(long duracion) {
+		this.duracion = duracion;
+	}
+
 }

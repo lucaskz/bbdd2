@@ -50,6 +50,21 @@ public class Suscripcion {
 
 	public void setoId(Long oId) {
 		this.oId = oId;
+	}
+
+
+	public Date getFechaSuscripcion() {
+		return fechaSuscripcion;
+	}
+
+
+	public void setFechaSuscripcion(Date fechaSuscripcion) {
+		this.fechaSuscripcion = fechaSuscripcion;
+	}
+
+
+	public void setCategoria(Categoria categoria) {
+		this.categoria = categoria;
 	}	
 
 }

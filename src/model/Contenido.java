@@ -4,6 +4,7 @@ public abstract class Contenido {
 	
 	private Long oId;
 	protected String titulo;
+	
 	protected int edadMinima;
 	
 	public Contenido () {
@@ -14,6 +15,8 @@ public abstract class Contenido {
 		this.titulo=titulo;
 		this.edadMinima=edadMinima;
 	}
+
+
 
 	public  boolean esPelicula(){
 		return false;
@@ -27,9 +30,18 @@ public abstract class Contenido {
 		return this.titulo;
 	}
 	
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
+	}
+	
 	public int getEdadMinima(){
 		return this.edadMinima;
 	}
+	
+	public void setEdadMinima(int edadMinima) {
+		this.edadMinima = edadMinima;
+	}
+
 
 	public Long getoId() {
 		return oId;
