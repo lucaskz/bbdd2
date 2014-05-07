@@ -9,6 +9,7 @@ public class Reproduccion {
 	private long tiempo;
 	private Reproducible reproducible;
 	
+	
 	public Reproduccion () {
 		
 	}
