@@ -3,6 +3,7 @@ package model;
 public class Episodio implements Reproducible {
 	
 	private Long oId;
+	private String reproducible;
 	private long duracion;
 	private int numero;
 	private String titulo;
@@ -82,6 +83,14 @@ public class Episodio implements Reproducible {
 	public boolean aptoPara(Usuario usuario) {
 
 		return (this.getEdadMinima() <= usuario.edad());
+	}
+
+	public String getReproducible() {
+		return reproducible;
+	}
+
+	public void setReproducible(String reproducible) {
+		this.reproducible = reproducible;
 	}
 
 

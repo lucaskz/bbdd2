@@ -3,6 +3,7 @@ package model;
 public class Pelicula  extends Contenido implements Reproducible{
 	
 	private Long oId;
+	private String reproducible;
 	private long duracion;
 	
 	public Pelicula () {
@@ -41,6 +42,14 @@ public class Pelicula  extends Contenido implements Reproducible{
 
 	public void setDuracion(long duracion) {
 		this.duracion = duracion;
+	}
+
+	public String getReproducible() {
+		return reproducible;
+	}
+
+	public void setReproducible(String reproducible) {
+		this.reproducible = reproducible;
 	}
 
 }
