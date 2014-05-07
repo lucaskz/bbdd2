@@ -65,7 +65,7 @@
 		<many-to-one name="usuario" column="ID_USUARIO" unique="true"
 			not-null="true" cascade="all" />
 		<list name="reproducciones" cascade="all">
-			<key column="ID_GESTOR" not-null="true" />
+			<key column="ID_GESTOR"  />
 			<list-index column="sortOrder" />
 			<one-to-many class="Reproduccion" />
 		</list>
@@ -95,7 +95,7 @@
 		<joined-subclass name="CategoriaInvitado" table="CATEGORIA_INVITADO">
 			<key column="ID_CATEGORIA" />
 		</joined-subclass>
-		<joined-subclass name="CategoriaVip" table="CATEGORIA_VIP">
+		<joined-subclass name="CategoriaVIP" table="CATEGORIA_VIP">
 			<key column="ID_CATEGORIA" />
 		</joined-subclass>
 	</class>
