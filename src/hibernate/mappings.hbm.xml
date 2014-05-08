@@ -7,8 +7,8 @@
 		<id name="oId" column="ID_SITIO">
 			<generator class="native" />
 		</id>
-		<list name="usuarios" inverse="true" cascade="all">
-			<key column="ID_SITIO" />
+		<list name="usuarios" cascade="all">
+			<key column="ID_SITIO" not-null="true" />
 			<list-index column="sortOrder" />
 			<one-to-many class="Usuario" />
 		</list>
@@ -20,8 +20,8 @@
 		<id name="oId" column="ID_CATALOGO">
 			<generator class="native" />
 		</id>
-		<set name="contenidos" inverse="true" cascade="all">
-			<key column="ID_CATALOGO" />
+		<set name="contenidos" cascade="all">
+			<key column="ID_CATALOGO" not-null="true" />
 			<one-to-many class="Contenido" />
 		</set>
 	</class>
@@ -36,18 +36,18 @@
 	</class>
 
 	<class name="Usuario" table="USUARIO">
-		<id name="oId"  column="ID_USUARIO">
+		<id name="oId" column="ID_USUARIO">
 			<generator class="native" />
 		</id>
 		<property name="email" type="string" />
-		<property name="fechaNacimiento" type="date" />	
+		<property name="fechaNacimiento" type="date" />
 		<many-to-one name="suscripcion" column="ID_SUSCRIPCION"
 			unique="true" not-null="true" cascade="all" />
-					<one-to-one name="gestor" property-ref="usuario" />
+		<one-to-one name="gestor" property-ref="usuario" />
 	</class>
 
 	<class name="Suscripcion" table="SUSCRIPCION">
-		<id name="oId"  column="ID_SUSCRIPCION">
+		<id name="oId" column="ID_SUSCRIPCION">
 			<generator class="native" />
 		</id>
 		<many-to-one name="categoria" column="ID_CATEGORIA"
@@ -56,23 +56,23 @@
 	</class>
 
 	<class name="GestorDeContenidos" table="GESTOR">
-		<id name="oId"  column="ID_GESTOR">
+		<id name="oId" column="ID_GESTOR">
 			<generator class="native" />
 		</id>
 		<many-to-one name="catalogo" column="ID_CATALOGO" unique="true"
 			not-null="true" cascade="all" />
 		<many-to-one name="usuario" column="ID_USUARIO" unique="true"
-			not-null="true" cascade="all" />		
+			not-null="true" cascade="all" />
 
 		<list name="reproducciones" cascade="all">
-			<key column="ID_GESTOR"  />
+			<key column="ID_GESTOR" />
 			<list-index column="sortOrder" />
 			<one-to-many class="Reproduccion" />
 		</list>
 	</class>
 
 	<class name="Reproducible" table="REPRODUCIBLE" polymorphism="implicit">
-		<id name="oId"  column="ID_REPRODUCIBLE">
+		<id name="oId" column="ID_REPRODUCIBLE">
 			<generator class="native" />
 		</id>
 	</class>
@@ -93,7 +93,7 @@
 	</class>
 
 	<class name="Categoria" table="CATEGORIA">
-		<id name="oId"  column="ID_CATEGORIA">
+		<id name="oId" column="ID_CATEGORIA">
 			<generator class="native" />
 		</id>
 		<property name="fecha" type="date" />
@@ -106,7 +106,7 @@
 	</class>
 
 	<class name="Episodio" table="EPISODIO">
-		<id name="oId"  column="ID_EPISODIO">
+		<id name="oId" column="ID_EPISODIO">
 			<generator class="native" />
 		</id>
 		<property name="duracion" type="long" />
@@ -117,7 +117,7 @@
 	</class>
 
 	<class name="Contenido" table="CONTENIDO">
-		<id name="oId"  column="ID_CONTENIDO">
+		<id name="oId" column="ID_CONTENIDO">
 			<generator class="native" />
 		</id>
 		<discriminator column="TIPO_CONTENIDO" type="string" />
@@ -136,7 +136,7 @@
 	</class>
 
 	<class name="Temporada" table="TEMPORADA">
-		<id name="oId"  column="ID_TEMPORADA">
+		<id name="oId" column="ID_TEMPORADA">
 			<generator class="native" />
 		</id>
 		<property name="numero" type="integer" />
