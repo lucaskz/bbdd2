@@ -1,5 +1,7 @@
 package model;
 
+/**Interfaz para la implementación de un reproducible ("episodio o "película")*/
+
 public interface Reproducible {
 
 	public boolean esPelicula();

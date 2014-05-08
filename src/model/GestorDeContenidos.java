@@ -5,6 +5,8 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.Iterator;
 
+/**Modela un gestor de contenidos, con diversos métodos para administrar las reproducciones de un usuario*/
+
 public class GestorDeContenidos {
 	
 	private Long oId;

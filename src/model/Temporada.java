@@ -3,7 +3,11 @@ package model;
 import java.util.ArrayList;
 import java.util.Collection;
 
+
+/**Modela una temporada para un contenido del tipo "serie"*/
+
 public class Temporada {
+
 	
 	private Long oId;
 	private Collection<Episodio> episodios;

@@ -5,7 +5,11 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Iterator;
 
+/**
+ * Modela el catálogo de reproducciones y diversos métodos para su procesamiento*/
+
 public class Catalogo {
+	
 	
 	private Long oId;
 	private Collection <Contenido> contenidos;

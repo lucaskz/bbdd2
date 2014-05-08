@@ -2,7 +2,10 @@ package model;
 
 import java.util.Date;
 
+/**Modela la categoría "normal" de una suscripción*/
+
 public class Categoria {
+	
 	
 	private Long oId;
 	protected Date fecha;

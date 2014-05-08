@@ -4,7 +4,10 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
+/**Modela un usuario del sitio.*/
+
 public class Usuario {
+
 
 	private Long oId;
 	private Date fechaNacimiento;

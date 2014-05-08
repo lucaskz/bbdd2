@@ -2,6 +2,8 @@ package model;
 
 import java.util.Date;
 
+/**Modela la sesión de un usuario determinado.*/
+
 public class Sesion {
 
 	private Long oId;

@@ -3,6 +3,8 @@ package model;
 import java.util.ArrayList;
 import java.util.Collection;
 
+/**Subclase de Contenido, modela un contenido del tipo "serie".*/
+
 public class Serie extends Contenido {
 	
 	private Long oId;

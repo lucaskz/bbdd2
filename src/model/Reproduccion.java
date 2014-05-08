@@ -2,6 +2,8 @@ package model;
 
 import java.util.Date;
 
+/**Modela una reproducción.*/
+
 public class Reproduccion {
 	
 	private Long oId;

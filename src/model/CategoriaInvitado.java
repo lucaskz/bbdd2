@@ -1,5 +1,7 @@
 package model;
 
+/**Subclase de Categoria, modela la categoría "invitado" para una suscripción.*/
+
 public class CategoriaInvitado extends Categoria {
 	
 	private Long oId;

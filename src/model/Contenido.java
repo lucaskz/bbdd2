@@ -1,6 +1,9 @@
 package model;
 
+/**Clase abstracta, modela los contenidos de un catálogo.*/
+
 public abstract class Contenido {
+	
 	
 	private Long oId;
 	protected String titulo;

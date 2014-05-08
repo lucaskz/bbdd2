@@ -1,6 +1,10 @@
 package model;
 
+
+/**Subclase de Categoria, modela la categoría "VIP" para una suscripción.*/
+
 public class CategoriaVIP extends Categoria {
+
 	
 	private Long oId;
 	

@@ -3,6 +3,8 @@ package model;
 import java.util.ArrayList;
 import java.util.Collection;
 
+/**Modela al sitio, permite el registro de usuarios y la creación de un catálogo.*/
+
 public class Sitio {
 
 	private Long oId;

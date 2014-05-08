@@ -2,6 +2,8 @@ package model;
 
 import java.util.Date;
 
+/**Modela la suscripción de un usuario al sitio, con su fecha de alta y su categoría. */
+
 public class Suscripcion {
 	
 	private Long oId;

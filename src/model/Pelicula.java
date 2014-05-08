@@ -1,5 +1,7 @@
 package model;
 
+/**Subclase de Contenido, modela un contenido del tipo "película".*/
+
 public class Pelicula  extends Contenido implements Reproducible{
 	
 	private Long oId;

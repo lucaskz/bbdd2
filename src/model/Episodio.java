@@ -1,5 +1,7 @@
 package model;
 
+/**Modela un episodio de una temporadada para una serie determinada, implementando la interfaz Reproducible*/
+
 public class Episodio implements Reproducible {
 	
 	private Long oId;
