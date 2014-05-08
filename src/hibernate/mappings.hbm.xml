@@ -43,7 +43,8 @@
 		<property name="fechaNacimiento" type="date" />
 		<many-to-one name="suscripcion" column="ID_SUSCRIPCION"
 			unique="true" not-null="true" cascade="all" />
-		<one-to-one name="gestor" property-ref="usuario" />
+		<many-to-one name="gestor" column="ID_GESTOR" unique="true"
+			not-null="true" cascade="all" />
 	</class>
 
 	<class name="Suscripcion" table="SUSCRIPCION">
@@ -61,8 +62,7 @@
 		</id>
 		<many-to-one name="catalogo" column="ID_CATALOGO" unique="true"
 			not-null="true" cascade="all" />
-		<many-to-one name="usuario" column="ID_USUARIO" unique="true"
-			not-null="true" cascade="all" />
+		<one-to-one name="usuario" property-ref="gestor"/>
 
 		<list name="reproducciones" cascade="all">
 			<key column="ID_GESTOR" />
