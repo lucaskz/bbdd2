@@ -65,7 +65,7 @@
 		<one-to-one name="usuario" property-ref="gestor"/>
 
 		<list name="reproducciones" cascade="all">
-			<key column="ID_GESTOR" />
+			<key column="ID_GESTOR" not-null="true" />
 			<list-index column="sortOrder" />
 			<one-to-many class="Reproduccion" />
 		</list>
