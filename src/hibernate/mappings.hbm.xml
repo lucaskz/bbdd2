@@ -41,10 +41,12 @@
 		</id>
 		<property name="email" type="string" />
 		<property name="fechaNacimiento" type="date" />
-		<many-to-one name="suscripcion" column="ID_SUSCRIPCION"
-			unique="true" not-null="true" cascade="all" />
-		<many-to-one name="gestor" column="ID_GESTOR" unique="true"
-			not-null="true" cascade="all" />
+		<many-to-one name="suscripcion" column="ID_SUSCRIPCION" unique="true" not-null="true"
+			cascade="all" />
+		<join table="UsuarioGestor" optional="true">
+			<key column="ID_USUARIO" unique="true"/>
+			<many-to-one name="gestor" column="ID_GESTOR" not-null="true" unique="true"/>
+		</join>
 	</class>
 
 	<class name="Suscripcion" table="SUSCRIPCION">
@@ -60,10 +62,13 @@
 		<id name="oId" column="ID_GESTOR">
 			<generator class="native" />
 		</id>
-		<many-to-one name="catalogo" column="ID_CATALOGO" unique="true"
-			not-null="true" cascade="all" />
-		<one-to-one name="usuario" property-ref="gestor"/>
-
+		<many-to-one name="catalogo" column="ID_CATALOGO" unique="true" not-null="true" cascade="all"
+			/>
+		<join table="UsuarioGestor" optional="true" inverse="true">
+			<key column="ID_GESTOR" unique="true"/>
+			<many-to-one name="usuario" column="ID_USUARIO" not-null="true" unique="true"/>
+		</join>
+		
 		<list name="reproducciones" cascade="all">
 			<key column="ID_GESTOR" not-null="true" />
 			<list-index column="sortOrder" />
