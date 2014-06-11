@@ -13,7 +13,7 @@
 			<one-to-many class="Usuario" />
 		</list>
 		<many-to-one name="catalogo" column="ID_CATALOGO" unique="true"
-			not-null="true" cascade="all" />
+			not-null="true"  />
 	</class>
 
 	<class name="Catalogo" table="CATALOGO">
