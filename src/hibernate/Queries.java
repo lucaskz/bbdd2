@@ -27,6 +27,7 @@ public class Queries {
 			System.out.println("Building sessions.........");
 	        createSessionFactory();
 	        consulta_a();
+	        consulta_b("Sim");
 		}
 		catch (Exception e) {
 			System.out
@@ -53,7 +54,36 @@ public class Queries {
 		try{
 			tx = session.beginTransaction();
 			Query consulta = session.createQuery("FROM Serie");
+			tx.commit();
 			List series = consulta.list();
+			Iterator<Serie> series_iterator = series.iterator();
+			while (series_iterator.hasNext()) {
+				Serie serie = (Serie) series_iterator.next();
+				System.out.println("Título de la Serie: "+ serie.getTitulo());
+			}
+			System.out.println("---------------------------------------------------------------------------------------------------------------------------------------------");
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			if (tx != null)
+				tx.rollback();
+			session.close();
+		}		
+		session.disconnect();		
+	}
+	
+	private static void consulta_b(String sequence){
+		System.out.println("---------------------------------------------------------------------------------------------------------------------------------------------");
+		System.out.println("Listar las series cuyo título contenga una secuencia de caracteres.");
+		System.out.println("---------------------------------------------------------------------------------------------------------------------------------------------");
+		Session session = sessionFactory.openSession();
+		Transaction tx = null;
+		try{
+			tx = session.beginTransaction();
+			Query consulta = session.createQuery("FROM Serie s WHERE s.titulo LIKE :sequence");
+			consulta.setParameter("sequence", "%"+sequence+"%");
+			tx.commit();
+			List<Serie> series = consulta.list();
 			Iterator<Serie> series_iterator = series.iterator();
 			while (series_iterator.hasNext()) {
 				Serie serie = (Serie) series_iterator.next();
