@@ -53,10 +53,10 @@ public class Queries {
 			tx = session.beginTransaction();
 			Query consulta = session.createQuery("FROM Serie");
 			tx.commit();
-			List series = consulta.list();
+			List<Serie> series = consulta.list();
 			Iterator<Serie> series_iterator = series.iterator();
 			while (series_iterator.hasNext()) {
-				Serie serie = (Serie) series_iterator.next();
+				Serie serie = series_iterator.next();
 				System.out.println("Título de la Serie: "+ serie.getTitulo());
 			}
 			System.out.println("---------------------------------------------------------------------------------------------------------------------------------------------");
@@ -84,7 +84,7 @@ public class Queries {
 			List<Serie> series = consulta.list();
 			Iterator<Serie> series_iterator = series.iterator();
 			while (series_iterator.hasNext()) {
-				Serie serie = (Serie) series_iterator.next();
+				Serie serie = series_iterator.next();
 				System.out.println("Título de la Serie: "+ serie.getTitulo());
 			}
 			System.out.println("---------------------------------------------------------------------------------------------------------------------------------------------");
