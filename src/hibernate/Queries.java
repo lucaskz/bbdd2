@@ -22,8 +22,6 @@ public class Queries {
 		try {
 
 			System.out.println("----------------------- Setting up Hibernate -----------------------");
-			Configuration cfg = new Configuration();
-			cfg.configure("/hibernate/hibernate.cfg.xml");
 			System.out.println("Building sessions.........");
 	        createSessionFactory();
 	        consulta_a();
