@@ -50,10 +50,10 @@ public class Queries {
 		Session session = sessionFactory.openSession();
 		Transaction tx = null;
 		try{
-			tx = session.beginTransaction();
 			Query consulta = session.createQuery("FROM Serie");
-			tx.commit();
+			tx = session.beginTransaction();			
 			List series = consulta.list();
+			tx.commit();
 			Iterator<Serie> series_iterator = series.iterator();
 			while (series_iterator.hasNext()) {
 				Serie serie = (Serie) series_iterator.next();
@@ -77,11 +77,11 @@ public class Queries {
 		Session session = sessionFactory.openSession();
 		Transaction tx = null;
 		try{
-			tx = session.beginTransaction();
 			Query consulta = session.createQuery("FROM Serie s WHERE s.titulo LIKE :sequence");
 			consulta.setParameter("sequence", "%"+sequence+"%");
-			tx.commit();
-			List<Serie> series = consulta.list();
+			tx = session.beginTransaction();
+			List<Serie> series = consulta.list();		
+			tx.commit();			
 			Iterator<Serie> series_iterator = series.iterator();
 			while (series_iterator.hasNext()) {
 				Serie serie = (Serie) series_iterator.next();
