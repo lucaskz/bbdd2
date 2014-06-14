@@ -22,8 +22,6 @@ public class Queries {
 		try {
 
 			System.out.println("----------------------- Setting up Hibernate -----------------------");
-			Configuration cfg = new Configuration();
-			cfg.configure("/hibernate/hibernate.cfg.xml");
 			System.out.println("Building sessions.........");
 	        createSessionFactory();
 	        consulta_a();
@@ -51,9 +49,10 @@ public class Queries {
 		Session session = sessionFactory.openSession();
 		Transaction tx = null;
 		try{
-			tx = session.beginTransaction();
 			Query consulta = session.createQuery("FROM Serie");
+			tx = session.beginTransaction();			
 			List series = consulta.list();
+			tx.commit();
 			Iterator<Serie> series_iterator = series.iterator();
 			while (series_iterator.hasNext()) {
 				Serie serie = (Serie) series_iterator.next();
