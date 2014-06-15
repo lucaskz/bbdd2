@@ -4,6 +4,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import model.Pelicula;
+import model.Reproduccion;
 import model.Serie;
 
 import org.hibernate.Query;
@@ -109,13 +110,23 @@ public class Queries {
 		Session session = sessionFactory.openSession();
 		Transaction tx = null;
 		try{				
-			Query consulta = session.createQuery("SELECT  max(cont.titulo)  FROM GestorDeContenidos as g JOIN g.reproducciones as r JOIN g.catalogo as c JOIN c.contenidos cont where cont.class=Pelicula and YEAR(r.fecha)=2013");
+			Query consulta = session.createQuery("select r , count (r.reproducible.id) as reproducciones from Reproduccion as r  where YEAR(r.fecha)=2013 and r.reproducible.class=Pelicula group by r.reproducible.id order by reproducciones DESC");
 			//consulta.setParameter("sequence", "%"+year+"%");	
 			tx = session.beginTransaction();
 			//List <Pelicula> peliculas = consulta.list();
-			List <Object> peliculas =  consulta.list();	
+			/*List <Reproduccion> peliculas =  consulta.list();	
+			
+			Iterator<Reproduccion> peliculas_string_it = peliculas.iterator();
+			while (peliculas_string_it.hasNext()) {
+				Reproduccion string = (Reproduccion) peliculas_string_it.next();
+				System.out.println("Título de la Pelicula: "+ string);
+			}*/
+			
+			List <Object> resultado = consulta.list();
 			tx.commit();
-			System.out.println("Título de la Pelicula: "+ peliculas);
+			
+			
+			
 			/*Iterator<Pelicula> peliculas_iterator = peliculas.iterator();
 			while (peliculas_iterator.hasNext()) {
 				Pelicula pelicula = peliculas_iterator.next();
