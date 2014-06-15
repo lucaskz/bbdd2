@@ -3,6 +3,7 @@ package hibernate;
 import java.util.Iterator;
 import java.util.List;
 
+import model.Pelicula;
 import model.Serie;
 
 import org.hibernate.Query;
@@ -26,6 +27,7 @@ public class Queries {
 	        createSessionFactory();
 	        consulta_a();
 	        consulta_b("Sim");
+	        consulta_d("2013");
 		}
 		catch (Exception e) {
 			System.out
@@ -50,10 +52,11 @@ public class Queries {
 		Session session = sessionFactory.openSession();
 		Transaction tx = null;
 		try{
+			Query consulta = session.createQuery("FROM Serie");		
 			tx = session.beginTransaction();
-			Query consulta = session.createQuery("FROM Serie");
+			List<Serie> series = consulta.list();		
 			tx.commit();
-			List<Serie> series = consulta.list();
+			
 			Iterator<Serie> series_iterator = series.iterator();
 			while (series_iterator.hasNext()) {
 				Serie serie = series_iterator.next();
@@ -76,12 +79,12 @@ public class Queries {
 		System.out.println("---------------------------------------------------------------------------------------------------------------------------------------------");
 		Session session = sessionFactory.openSession();
 		Transaction tx = null;
-		try{
-			tx = session.beginTransaction();
+		try{				
 			Query consulta = session.createQuery("FROM Serie s WHERE s.titulo LIKE :sequence");
-			consulta.setParameter("sequence", "%"+sequence+"%");
-			tx.commit();
-			List<Serie> series = consulta.list();
+			consulta.setParameter("sequence", "%"+sequence+"%");	
+			tx = session.beginTransaction();
+			List<Serie> series = consulta.list();	
+			tx.commit();			
 			Iterator<Serie> series_iterator = series.iterator();
 			while (series_iterator.hasNext()) {
 				Serie serie = series_iterator.next();
@@ -98,6 +101,36 @@ public class Queries {
 		session.disconnect();		
 	}
 	
+	
+	private static void consulta_d(String year){
+		System.out.println("---------------------------------------------------------------------------------------------------------------------------------------------");
+		System.out.println("Informar la película más vista en un determinado año.");
+		System.out.println("---------------------------------------------------------------------------------------------------------------------------------------------");
+		Session session = sessionFactory.openSession();
+		Transaction tx = null;
+		try{				
+			Query consulta = session.createQuery("SELECT COUNT(*) FROM Reproduccion r");
+			//consulta.setParameter("sequence", "%"+year+"%");	
+			tx = session.beginTransaction();
+			//List <Pelicula> peliculas = consulta.list();
+			Long pelicula = (Long) consulta.uniqueResult();	
+			tx.commit();		
+			/*Iterator<Pelicula> peliculas_iterator = peliculas.iterator();
+			while (peliculas_iterator.hasNext()) {
+				Pelicula pelicula = peliculas_iterator.next();
+				System.out.println("Título de la Pelicula: "+ pelicula.getTitulo());
+			}*/
+			System.out.println("Título de la Pelicula: "+ pelicula);			
+			System.out.println("---------------------------------------------------------------------------------------------------------------------------------------------");
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			if (tx != null)
+				tx.rollback();
+			session.close();
+		}		
+		session.disconnect();		
+	}
 	
 
 }
