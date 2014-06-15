@@ -109,18 +109,18 @@ public class Queries {
 		Session session = sessionFactory.openSession();
 		Transaction tx = null;
 		try{				
-			Query consulta = session.createQuery("SELECT COUNT(*) FROM Reproduccion r");
+			Query consulta = session.createQuery("SELECT  max(cont.titulo)  FROM GestorDeContenidos as g JOIN g.reproducciones as r JOIN g.catalogo as c JOIN c.contenidos cont where cont.class=Pelicula and YEAR(r.fecha)=2013");
 			//consulta.setParameter("sequence", "%"+year+"%");	
 			tx = session.beginTransaction();
 			//List <Pelicula> peliculas = consulta.list();
-			Long pelicula = (Long) consulta.uniqueResult();	
-			tx.commit();		
+			List <Object> peliculas =  consulta.list();	
+			tx.commit();
+			System.out.println("Título de la Pelicula: "+ peliculas);
 			/*Iterator<Pelicula> peliculas_iterator = peliculas.iterator();
 			while (peliculas_iterator.hasNext()) {
 				Pelicula pelicula = peliculas_iterator.next();
 				System.out.println("Título de la Pelicula: "+ pelicula.getTitulo());
-			}*/
-			System.out.println("Título de la Pelicula: "+ pelicula);			
+			}*/			
 			System.out.println("---------------------------------------------------------------------------------------------------------------------------------------------");
 		}
 		catch (Exception e) {
