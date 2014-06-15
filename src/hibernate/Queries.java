@@ -3,6 +3,7 @@ package hibernate;
 import java.util.Iterator;
 import java.util.List;
 
+import model.Episodio;
 import model.Pelicula;
 import model.Reproduccion;
 import model.Serie;
@@ -29,6 +30,13 @@ public class Queries {
 	        consulta_a();
 	        consulta_b("Sim");
 	        consulta_d("2013");
+	        consulta_c();
+	        consulta_e();
+	        consulta_f();
+	        consulta_g();
+	        consulta_h();
+	        consulta_i();
+	        consulta_j();
 		}
 		catch (Exception e) {
 			System.out
@@ -102,6 +110,28 @@ public class Queries {
 		session.disconnect();		
 	}
 	
+	private static void consulta_c(){
+		System.out.println("---------------------------------------------------------------------------------------------------------------------------------------------");
+		System.out.println("Listar los 5 episodios de series más vistos en el sistema.");
+		System.out.println("---------------------------------------------------------------------------------------------------------------------------------------------");
+		Session session = sessionFactory.openSession();
+		Transaction tx = null;
+		try{				
+			Query consulta = session.createQuery("select e.titulo,count(r.reproducible.id) as reproducciones from Reproduccion as r,Episodio e where r.reproducible.class='Episodio' and e.id=r.reproducible.id group by r.reproducible.id order by reproducciones DESC ");
+			tx = session.beginTransaction();
+			List <Object> resultado = consulta.list();
+			tx.commit();			
+			System.out.println("---------------------------------------------------------------------------------------------------------------------------------------------");
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			if (tx != null)
+				tx.rollback();
+			session.close();
+		}		
+		session.disconnect();		
+	}
+	
 	
 	private static void consulta_d(String year){
 		System.out.println("---------------------------------------------------------------------------------------------------------------------------------------------");
@@ -110,7 +140,7 @@ public class Queries {
 		Session session = sessionFactory.openSession();
 		Transaction tx = null;
 		try{				
-			Query consulta = session.createQuery("select r , count (r.reproducible.id) as reproducciones from Reproduccion as r  where YEAR(r.fecha)=2013 and r.reproducible.class=Pelicula group by r.reproducible.id order by reproducciones DESC");
+			Query consulta = session.createQuery("select c.titulo , count (r.reproducible.id) as reproducciones from Reproduccion as r,Contenido as c  where YEAR(r.fecha)=2013 and r.reproducible.class=Pelicula and c.id=r.reproducible.id group by r.reproducible.id order by reproducciones DESC");
 			//consulta.setParameter("sequence", "%"+year+"%");	
 			tx = session.beginTransaction();
 			//List <Pelicula> peliculas = consulta.list();
@@ -132,6 +162,139 @@ public class Queries {
 				Pelicula pelicula = peliculas_iterator.next();
 				System.out.println("Título de la Pelicula: "+ pelicula.getTitulo());
 			}*/			
+			System.out.println("---------------------------------------------------------------------------------------------------------------------------------------------");
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			if (tx != null)
+				tx.rollback();
+			session.close();
+		}		
+		session.disconnect();		
+	}
+	
+	private static void consulta_e(){
+		System.out.println("---------------------------------------------------------------------------------------------------------------------------------------------");
+		System.out.println("Listar los usuarios que reprodujeron más de n películas");
+		System.out.println("---------------------------------------------------------------------------------------------------------------------------------------------");
+		Session session = sessionFactory.openSession();
+		Transaction tx = null;
+		try{				
+			Query consulta = session.createQuery("select u,count(u) as reproducciones from Usuario as u join u.gestor as g join g.reproducciones as r where r.reproducible.class=Pelicula group by u having count(u) > 10 order by reproducciones DESC ");	
+			tx = session.beginTransaction();
+			List <Object> resultado = consulta.list();
+			tx.commit();	
+			System.out.println("---------------------------------------------------------------------------------------------------------------------------------------------");
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			if (tx != null)
+				tx.rollback();
+			session.close();
+		}		
+		session.disconnect();		
+	}
+	
+	private static void consulta_f(){
+		System.out.println("---------------------------------------------------------------------------------------------------------------------------------------------");
+		System.out.println("Listar los usuarios que vieron al menos un episodio por menos de 65 segundos");
+		System.out.println("---------------------------------------------------------------------------------------------------------------------------------------------");
+		Session session = sessionFactory.openSession();
+		Transaction tx = null;
+		try{				
+			Query consulta = session.createQuery("select u.email,count(u) as reproducciones from Usuario as u join u.gestor as g join g.reproducciones as r where r.reproducible.class='Episodio' and r.tiempo < 65000 group by u order by u.email  ");	
+			tx = session.beginTransaction();
+			List <Object> resultado = consulta.list();
+			tx.commit();	
+			System.out.println("---------------------------------------------------------------------------------------------------------------------------------------------");
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			if (tx != null)
+				tx.rollback();
+			session.close();
+		}		
+		session.disconnect();		
+	}
+	
+	private static void consulta_g(){
+		System.out.println("---------------------------------------------------------------------------------------------------------------------------------------------");
+		System.out.println("Listar las 3 películas más vista en el sistema");
+		System.out.println("---------------------------------------------------------------------------------------------------------------------------------------------");
+		Session session = sessionFactory.openSession();
+		Transaction tx = null;
+		try{				
+			Query consulta = session.createQuery("select c.titulo , count (r.reproducible.id) as reproducciones from Reproduccion as r,Contenido as c  where  r.reproducible.class=Pelicula and c.id=r.reproducible.id group by r.reproducible.id order by reproducciones DESC");	
+			tx = session.beginTransaction();
+			List <Object> resultado = consulta.list();
+			tx.commit();	
+			System.out.println("---------------------------------------------------------------------------------------------------------------------------------------------");
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			if (tx != null)
+				tx.rollback();
+			session.close();
+		}		
+		session.disconnect();		
+	}
+	
+	private static void consulta_h(){
+		System.out.println("---------------------------------------------------------------------------------------------------------------------------------------------");
+		System.out.println("Listar usuarios que reprodujeron el episodio 'Be a friend'");
+		System.out.println("---------------------------------------------------------------------------------------------------------------------------------------------");
+		Session session = sessionFactory.openSession();
+		Transaction tx = null;
+		try{				
+			Query consulta = session.createQuery("select u.email from Usuario as u join u.gestor as g join g.reproducciones as r,Episodio e where r.reproducible.class='Episodio' and e.id=r.reproducible.id  and e.titulo like 'Be a friend'  group by u order by u.email  ");	
+			tx = session.beginTransaction();
+			List <Object> resultado = consulta.list();
+			tx.commit();	
+			System.out.println("---------------------------------------------------------------------------------------------------------------------------------------------");
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			if (tx != null)
+				tx.rollback();
+			session.close();
+		}		
+		session.disconnect();		
+	}
+	
+	
+	private static void consulta_i(){
+		System.out.println("---------------------------------------------------------------------------------------------------------------------------------------------");
+		System.out.println("Listar usuarios que reprodujeron al menos una película cuya edad mínima sea 12 años");
+		System.out.println("---------------------------------------------------------------------------------------------------------------------------------------------");
+		Session session = sessionFactory.openSession();
+		Transaction tx = null;
+		try{				
+			Query consulta = session.createQuery("select u,count(u) as reproducciones from Usuario as u join u.gestor as g join g.reproducciones as r,Contenido as cont where r.reproducible.class=Pelicula and cont.id=r.reproducible.id and cont.edadMinima>12 group by u  order by reproducciones DESC ");	
+			tx = session.beginTransaction();
+			List <Object> resultado = consulta.list();
+			tx.commit();	
+			System.out.println("---------------------------------------------------------------------------------------------------------------------------------------------");
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			if (tx != null)
+				tx.rollback();
+			session.close();
+		}		
+		session.disconnect();		
+	}
+	
+	private static void consulta_j(){
+		System.out.println("---------------------------------------------------------------------------------------------------------------------------------------------");
+		System.out.println("Listar usuarios que estén a menos de 30 reproducciones de llegar al límite de su categoría");
+		System.out.println("---------------------------------------------------------------------------------------------------------------------------------------------");
+		Session session = sessionFactory.openSession();
+		Transaction tx = null;
+		try{				
+			Query consulta = session.createQuery("select u.email  from Usuario as u join u.suscripcion as s join s.categoria as c where (c.limiteReproducciones - (select count(r) from u.gestor as g join g.reproducciones as r  ) ) < 30  ");	
+			tx = session.beginTransaction();
+			List <Object> resultado = consulta.list();
+			tx.commit();	
 			System.out.println("---------------------------------------------------------------------------------------------------------------------------------------------");
 		}
 		catch (Exception e) {
