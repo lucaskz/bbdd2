@@ -110,7 +110,7 @@ public class Queries {
 		Session session = sessionFactory.openSession();
 		Transaction tx = null;
 		try{				
-			Query consulta = session.createQuery("select r , count (r.reproducible.id) as reproducciones from Reproduccion as r  where YEAR(r.fecha)=2013 and r.reproducible.class=Pelicula group by r.reproducible.id order by reproducciones DESC");
+			Query consulta = session.createQuery("select cont.titulo , count (r.reproducible.id) as reproducciones from GestorDeContenidos as g join g.reproducciones as r join g.catalogo as c join c.contenidos as cont  where YEAR(r.fecha)=2013 and r.reproducible.class=Pelicula group by r.reproducible.id order by reproducciones DESC");
 			//consulta.setParameter("sequence", "%"+year+"%");	
 			tx = session.beginTransaction();
 			//List <Pelicula> peliculas = consulta.list();
