@@ -85,8 +85,8 @@
 		<property name="tiempo" type="long" />
 
 		<any name="reproducible" meta-type="string" id-type="long">
-			<meta-value value="Episodio" class="Episodio" />
 			<meta-value value="Pelicula" class="Pelicula" />
+			<meta-value value="Episodio" class="Episodio"/>
 			<column name="REPRODUCIBLE_CLASS" />
 			<column name="REPRODUCIBLE_ID" not-null="false" />
 		</any>
@@ -97,6 +97,7 @@
 			<generator class="native" />
 		</id>
 		<property name="fecha" type="date" />
+		<property name="limiteReproducciones" type="integer"/>
 		<joined-subclass name="CategoriaInvitado" table="CATEGORIA_INVITADO">
 			<key column="ID_CATEGORIA" />
 		</joined-subclass>
